@@ -9,15 +9,12 @@ r_neighbor = 15      # радиус поиска соседей
 max_speed = 1.5
 
 # создаём 10 случайных препятствий в пределах среды
-# каждое препятствие имеет координаты (x, y)
 obstacles = np.random.rand(10, 2) * [width, height]  
 
 # Инициализация агентов
-# случайные позиции агентов 
 positions = np.random.rand(N, 2) * [width, height]
 
 # случайные начальные векторы скорости каждого агента
-# каждый вектор ограничен диапазоном [-max_speed, max_speed]
 speeds = (np.random.rand(N, 2) - 0.5) * 2 * max_speed
 
 # Функция обновления анимации
@@ -29,7 +26,7 @@ def update(frame):
     
     # перебираем каждого агента
     for i in range(N):
-        pos = positions[i]  # текущая позиция агента
+        pos = positions[i]
         speed = speeds[i]   # текущий вектор скорости агента
 
         # Поиск соседей 
