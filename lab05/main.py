@@ -7,9 +7,9 @@ def trimf(x, a, b, c):
     return np.maximum(np.minimum((x - a) / (b - a), (c - x) / (c - b)), 0)
 
 # --- Температура (°C)
-def temp_low(x): return trimf(x, 0, 10, 20)
-def temp_med(x): return trimf(x, 15, 25, 35)
-def temp_high(x): return trimf(x, 30, 40, 50)
+def temp_low(x): return trimf(x, -10, 0, 10)
+def temp_med(x): return trimf(x, 5, 15, 25)
+def temp_high(x): return trimf(x, 20, 30, 40)
 
 # --- UV (индекс 0–11)
 def uv_low(x): return trimf(x, 0, 1, 3)
@@ -76,7 +76,7 @@ def defuzzify(risks):
 st.title("Прогноз риска солнечного ожога")
 st.write("Введите значения для температуры, UV-индекса и влажности:")
 
-temp = st.slider("Температура (°C)", 0, 45, 25)
+temp = st.slider("Температура (°C)", -10, 40, 15)
 uv = st.slider("UV-индекс", 0, 11, 5)
 hum = st.slider("Влажность (%)", 0, 100, 50)
 
@@ -110,7 +110,7 @@ if st.button("Рассчитать риск"):
     fig, axs = plt.subplots(1, 3, figsize=(15, 4))
 
     # Температура
-    x = np.linspace(0, 50, 200)
+    x = np.linspace(-10, 40, 200)
     axs[0].plot(x, [temp_low(i) for i in x], label="низкая")
     axs[0].plot(x, [temp_med(i) for i in x], label="средняя")
     axs[0].plot(x, [temp_high(i) for i in x], label="высокая")
