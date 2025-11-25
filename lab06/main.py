@@ -3,14 +3,13 @@ import math
 import matplotlib.pyplot as plt
 
 # ----- параметры -----
-L = 4                  
+L = 4
 MAX_INT = 2**L - 1
 
-# Целевая функция (сюда вписать ваш вариант) — пример
-# f(x) = x * sin(10*pi*x) + 1
-import math
+# Целевая функция
 def f(x):
-    return x * math.sin(10 * math.pi * x) + 1
+    return math.exp(-x) * math.sin(5 * math.pi * x)
+
 
 # Кодирование и декодирование (4 бита → число 0..15 → x=[0,1])
 def decode(ch):
@@ -114,5 +113,5 @@ def GA(N=6, pc=0.8, pm=0.05, G=30):
     ch = pop[ix]
     print(f"Лучшее решение: {ch} → x={decode(ch):.4f}, f={best_f:.6f}")
 
-# ---- Пример запуска ----
-GA(N=12, pc=0.8, pm=0.05, G=50)
+# ---- запуск ----
+GA(N=6, pc=0.9, pm=0.01, G=50)
